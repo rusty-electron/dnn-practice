@@ -8,11 +8,11 @@ class NeuralNetwork:
         self.debug = debug
 
         for i in np.arange(0, len(layers) - 2):
-            # creates a 3x3 matrix
+            # creates a 3x3 matrix (for the first weight matrix in this case)
             w = np.random.randn(layers[i] + 1, layers[i + 1] + 1)
-            self.W.append(w / np.sqrt(layers[i]))
+            self.W.append(w / np.sqrt(layers[i])) # normalizing
 
-        # creates a 3x1 matrix
+        # creates a 3x1 matrix for the last weight matrix
         w = np.random.randn(layers[-2] + 1, layers[-1])
         self.W.append(w / np.sqrt(layers[-2]))
 
@@ -31,7 +31,7 @@ class NeuralNetwork:
     def fit(self, X, y, epochs=1000, displayUpdate=100):
         # X is 4x2 matrix of possible 0 & 1 combination
         X = np.c_[X, np.ones(X.shape[0])]
-        # the matrix now is 4x3 matrix with an extra column of 1s
+        # the matrix now is 4x3 matrix with an extra column of 1s - bias trick
 
         for epoch in np.arange(0, epochs):
             for (x, target) in zip(X, y):
