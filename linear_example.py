@@ -1,6 +1,7 @@
+import argparse
 import numpy as np
 import cv2
-import argparse
+
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", help="path to image file", required=True)
